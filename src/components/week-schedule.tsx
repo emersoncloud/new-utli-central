@@ -142,7 +142,14 @@ function RosterList({
   roster?: TeamRoster;
   isHome?: boolean;
 }) {
-  const players = roster?.players.filter((p) => p.name !== "Hidden") || [];
+  const visiblePlayers = roster?.players.filter((p) => p.name !== "Hidden") || [];
+
+  // Same ordering as modal: Captains → Women → Men → Unknown
+  const captains = visiblePlayers.filter((p) => p.role === "captain");
+  const women = visiblePlayers.filter((p) => p.gender === "women" && p.role !== "captain");
+  const men = visiblePlayers.filter((p) => p.gender === "men" && p.role !== "captain");
+  const unknown = visiblePlayers.filter((p) => p.gender === "unknown" && p.role !== "captain");
+  const orderedPlayers = [...captains, ...women, ...men, ...unknown];
 
   return (
     <div>
@@ -154,11 +161,11 @@ function RosterList({
           </span>
         )}
       </div>
-      {players.length === 0 ? (
+      {orderedPlayers.length === 0 ? (
         <span className="text-zinc-400">No roster</span>
       ) : (
         <ul className="text-zinc-600 dark:text-zinc-400">
-          {players.map((p, i) => (
+          {orderedPlayers.map((p, i) => (
             <li key={p.profileUrl || i}>
               {p.name}
               {p.role === "captain" && (
