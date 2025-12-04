@@ -25,8 +25,8 @@ export function GameCard({ game, highlightTeam, onClick }: GameCardProps) {
           : "border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900"
       } ${onClick ? "cursor-pointer hover:shadow-md hover:border-zinc-300 dark:hover:border-zinc-700" : ""}`}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
           <span
             className={
               home.name === highlightTeam
@@ -36,7 +36,7 @@ export function GameCard({ game, highlightTeam, onClick }: GameCardProps) {
           >
             {home.name}
           </span>
-          <span className="text-zinc-400">vs</span>
+          <span className="text-zinc-400 text-xs sm:text-base">vs</span>
           <span
             className={
               away.name === highlightTeam
@@ -48,7 +48,7 @@ export function GameCard({ game, highlightTeam, onClick }: GameCardProps) {
           </span>
         </div>
         {game.field && (
-          <span className="rounded bg-zinc-100 px-2 py-0.5 text-xs text-zinc-500 dark:bg-zinc-800">
+          <span className="shrink-0 rounded bg-zinc-100 px-2 py-0.5 text-xs text-zinc-500 dark:bg-zinc-800">
             {simplifyFieldName(game.field.name)}
           </span>
         )}
