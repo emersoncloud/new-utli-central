@@ -63,12 +63,9 @@ export function WeekSchedule({
       }`}
     >
       <header className="mb-4 flex items-center justify-between gap-2">
-        <div>
-          <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-            {week.weekLabel}
-          </h2>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">{gameDate}</p>
-        </div>
+        <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+          {gameDate}
+        </h2>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setExpanded(!expanded)}
